@@ -18,6 +18,7 @@ const DiveShow = lazy(() => import('../pages/DiveShow'));
 const Preview = lazy(() => import('../pages/Apps/Invoice/Preview'));
 const Add = lazy(() => import('../pages/Apps/Invoice/Add'));
 const Edit = lazy(() => import('../pages/Apps/Invoice/Edit'));
+const Identification = lazy(() => import('../pages/Pages/Identification/Identification'));
 /*
 const Tabs = lazy(() => import('../pages/Components/Tabs'));
 const Accordians = lazy(() => import('../pages/Components/Accordians'));
@@ -179,6 +180,12 @@ const routes = [
         path: '/apps/invoice/edit',
         element: <Edit />,
     },
+    {
+        path: '/apps/identification',
+        element: <Identification />,
+        layout: 'blank',
+    },
+
     // components page
     /*
     {
