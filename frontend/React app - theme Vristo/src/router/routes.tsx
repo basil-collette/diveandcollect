@@ -1,10 +1,12 @@
 import { lazy } from 'react';
-/*
+
 const Index = lazy(() => import('../pages/Index'));
+/*
 const Analytics = lazy(() => import('../pages/Analytics'));
 const Finance = lazy(() => import('../pages/Finance'));
 const Crypto = lazy(() => import('../pages/Crypto'));
 */
+
 const Todolist = lazy(() => import('../pages/Apps/Todolist'));
 const Mailbox = lazy(() => import('../pages/Apps/Mailbox'));
 const Notes = lazy(() => import('../pages/Apps/Notes'));
@@ -18,6 +20,7 @@ const DiveShow = lazy(() => import('../pages/DiveShow'));
 const Preview = lazy(() => import('../pages/Apps/Invoice/Preview'));
 const Add = lazy(() => import('../pages/Apps/Invoice/Add'));
 const Edit = lazy(() => import('../pages/Apps/Invoice/Edit'));
+const Identification = lazy(() => import('../pages/Pages/Identification/Identification'));
 /*
 const Tabs = lazy(() => import('../pages/Components/Tabs'));
 const Accordians = lazy(() => import('../pages/Components/Accordians'));
@@ -108,12 +111,11 @@ const Clipboard = lazy(() => import('../pages/Forms/Clipboard'));
 
 const routes = [
     // dashboard
-    /*
     {
         path: '/',
         element: <Index />,
+        layout: 'blank'
     },
-    */
     // {
     //     path: '/index',
     //     element: <Index />,
@@ -179,6 +181,12 @@ const routes = [
         path: '/apps/invoice/edit',
         element: <Edit />,
     },
+    {
+        path: '/apps/identification',
+        element: <Identification />,
+        layout: 'blank',
+    },
+
     // components page
     /*
     {
