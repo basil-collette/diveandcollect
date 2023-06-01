@@ -8,6 +8,11 @@ module.exports = {
         },
         extend: {
             colors: {
+                outremer: '#1a3863',
+                lagon: '#6bc2cc',
+                vertdeau: '#87c9b5',
+                prune: '#961f63',
+                fushia: '#d64591',
                 primary: {
                     DEFAULT: '#4361ee',
                     light: '#eaf1ff',
