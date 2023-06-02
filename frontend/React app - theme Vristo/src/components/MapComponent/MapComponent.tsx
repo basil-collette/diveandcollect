@@ -48,25 +48,29 @@ const MapComponent: React.FC = () => {
     L.geoJSON(continents).addTo(map);
 
     let oceanList = oceans;
+
+    const showSpecies = (event: any) => {
+      const latLng:L.LatLng = L.latLng(event.latlng.lat,event.latlng.lng);
+      map.fitBounds(L.latLngBounds(latLng,latLng));
+      setShowModal(true);
+    }
     
     oceanList.forEach((label) => {
-      L.marker([label.lat, label.lon], {
+      L.marker([label.lat, label.lon], {        
         icon: L.divIcon({
-          className: "relative",
-          html:`<span class="absolute top-0 left-0 text-white text-sm">${label.name}</span>`,
-        }),
-        
+          className: "relative !flex flex-col justify-center items-center",
+          iconSize: [100, 100],
+          html:`<p class="h-auto uppercase text-white text-center text-md">${label.name}</p>`,
+        })
+      }).on("click", (event) => { showSpecies(event);
       }).addTo(map);
       
       L.circle(L.latLng(label.lat,label.lon), {
         radius: 2000000, 
         fillOpacity: 0.7,
         bubblingMouseEvents:true
-      }).on("click", function (event) {
-        const latLng:L.LatLng = L.latLng(event.latlng.lat,event.latlng.lng);
-        map.fitBounds(L.latLngBounds(latLng,latLng));
-        setShowModal(true);
-    }).addTo(map);
+      }).on("click", (event) => { showSpecies(event);
+      }).addTo(map);
   
     });
     return(() => {
