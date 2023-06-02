@@ -20,7 +20,7 @@ const DiveShow = lazy(() => import('../pages/DiveShow'));
 const Preview = lazy(() => import('../pages/Apps/Invoice/Preview'));
 const Add = lazy(() => import('../pages/Apps/Invoice/Add'));
 const Edit = lazy(() => import('../pages/Apps/Invoice/Edit'));
-const Identification = lazy(() => import('../pages/Pages/Identification/Identification'));
+const Identification = lazy(() => import('../pages/Identification/Identification'));
 /*
 const Tabs = lazy(() => import('../pages/Components/Tabs'));
 const Accordians = lazy(() => import('../pages/Components/Accordians'));
@@ -74,14 +74,14 @@ const Export = lazy(() => import('../pages/DataTables/Export'));
 const ColumnChooser = lazy(() => import('../pages/DataTables/ColumnChooser'));
 const Profile = lazy(() => import('../pages/Users/Profile'));
 const AccountSetting = lazy(() => import('../pages/Users/AccountSetting'));
-const KnowledgeBase = lazy(() => import('../pages/Pages/KnowledgeBase'));
-const ContactForm = lazy(() => import('../pages/Pages/ContactForm'));
-const Faq = lazy(() => import('../pages/Pages/Faq'));
-const ComingSoon = lazy(() => import('../pages/Pages/ComingSoon'));
-const ERROR404 = lazy(() => import('../pages/Pages/Error404'));
-const ERROR500 = lazy(() => import('../pages/Pages/Error500'));
-const ERROR503 = lazy(() => import('../pages/Pages/Error503'));
-const Maintenence = lazy(() => import('../pages/Pages/Maintenence'));
+const KnowledgeBase = lazy(() => import('../pages/KnowledgeBase'));
+const ContactForm = lazy(() => import('../pages/ContactForm'));
+const Faq = lazy(() => import('../pages/Faq'));
+const ComingSoon = lazy(() => import('../pages/ComingSoon'));
+const ERROR404 = lazy(() => import('../pages/Error404'));
+const ERROR500 = lazy(() => import('../pages/Error500'));
+const ERROR503 = lazy(() => import('../pages/Error503'));
+const Maintenence = lazy(() => import('../pages/Maintenence'));
 const LoginBoxed = lazy(() => import('../pages/Authentication/LoginBoxed'));
 const RegisterBoxed = lazy(() => import('../pages/Authentication/RegisterBoxed'));
 const UnlockBoxed = lazy(() => import('../pages/Authentication/UnlockBox'));
@@ -116,10 +116,10 @@ const routes = [
         element: <Index />,
         layout: 'blank'
     },
-    // {
-    //     path: '/index',
-    //     element: <Index />,
-    // },
+    {
+        path: '/index',
+        element: <Index />,
+    },
     // analytics page
     /*
     {
