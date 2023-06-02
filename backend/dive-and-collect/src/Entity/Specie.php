@@ -29,6 +29,9 @@ class Specie
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $scientificName = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $location = null;
+
     public function __construct()
     {
         $this->inventories = new ArrayCollection();
@@ -102,6 +105,18 @@ class Specie
     public function setScientificName(?string $scientificName): self
     {
         $this->scientificName = $scientificName;
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(string $location): self
+    {
+        $this->location = $location;
 
         return $this;
     }

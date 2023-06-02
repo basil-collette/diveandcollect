@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Entity\Specie;
 use App\Entity\Inventory;
 use App\Entity\DivingEvent;
+use App\Entity\Location;
 use App\Service\ApiMarineSpeciesService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -17,7 +18,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserFixtures extends Fixture
 {
     private UserPasswordHasherInterface $hasher;
-    
+
     private ApiMarineSpeciesService $apiMarineSpeciesService;
 
     public function __construct(UserPasswordHasherInterface $hasher, ApiMarineSpeciesService $apiMarineSpeciesService)
@@ -26,13 +27,37 @@ class UserFixtures extends Fixture
 
         $this->apiMarineSpeciesService = $apiMarineSpeciesService;
     }
-    
+
     public function load(ObjectManager $manager): void
     {
         $this->apiMarineSpeciesService->createFromData();
 
+        $position = [
+            ['Ocean Atlantique', 0, 0],
+            ['Ocean Pacifique', 0, 180],
+            ['Ocean Indien', 0, 60],
+            ['Ocean Arctique', -30, -40],
+            ['Ocean Antarctique', 30, -70],
+            ['Mer Méditerranée', 20, 120],
+            ['Mer Rouge', 20, 120],
+            ['Mer Noire', 30, -70],
+            ['Mer de Chine', 20, 120],
+            ['Mer de Corail', 30, -70],
+
+        ];
+
+        foreach ($position as $p) {
+            $location = new Location();
+            $location->setName($p[0]);
+            $location->setSpecieLocation(["lat" => $p[1], "lng" => $p[2]]);
+            $manager->persist($location);
+        }
+
+
+
+
         $faker = Factory::create('fr_FR');
-        for ($i = 0; $i<50; $i++){
+        for ($i = 0; $i < 50; $i++) {
             $user = new User();
 
             $divebook = new DiveBook();
@@ -46,7 +71,7 @@ class UserFixtures extends Fixture
             $password = $this->hasher->hashPassword($user, 'azerty');
             $user->setPassword($password);
 
-            $divebook->setDivingLevel(mt_rand(1,4));
+            $divebook->setDivingLevel(mt_rand(1, 4));
 
             $user->setDiveBook($divebook);
 
@@ -55,20 +80,20 @@ class UserFixtures extends Fixture
 
             $specieRepo = $manager->getRepository(Specie::class);
 
-            for ($j=0; $j<5; $j++){
+            for ($j = 0; $j < 5; $j++) {
 
                 $dive = new Dive();
 
-                $dive ->setDiveBook($divebook);
+                $dive->setDiveBook($divebook);
                 $dive->setDate($faker->dateTime($max = 'now', $timezone = null));
-                $dive->setGeolocation(mt_rand(-90,90)." ".mt_rand(-180,180));
-                $dive->setMaxDepth(mt_rand(1,100));
-                $dive->setDuration(mt_rand(1,200));
+                $dive->setGeolocation(mt_rand(-90, 90) . " " . mt_rand(-180, 180));
+                $dive->setMaxDepth(mt_rand(1, 100));
+                $dive->setDuration(mt_rand(1, 200));
                 $dive->setCountry($faker->country());
 
                 $manager->persist($dive);
 
-                for ($k=0; $k < 5; $k++) { 
+                for ($k = 0; $k < 5; $k++) {
 
                     $divingEvent = new DivingEvent();
 
@@ -77,11 +102,11 @@ class UserFixtures extends Fixture
 
                     $manager->persist($divingEvent);
 
-                    for ($l=0; $l < 1; $l++) { 
+                    for ($l = 0; $l < 1; $l++) {
                         $inventory = new Inventory();
 
                         $inventory->setDivingEvent($divingEvent);
-                        $inventory->setNumber(mt_rand(1,100));
+                        $inventory->setNumber(mt_rand(1, 100));
 
                         $specie = $specieRepo->findOneRandom();
                         $inventory->setSpecie($specie);
@@ -93,9 +118,5 @@ class UserFixtures extends Fixture
         }
 
         $manager->flush();
-
     }
-
-
-
 }
