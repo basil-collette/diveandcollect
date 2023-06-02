@@ -13,8 +13,8 @@ class ApiMarineSpeciesService
     public function __construct(
         private SpecieRepository $specieRepository,
         private HttpClientInterface $client,
-        private EntityManagerInterface $entityManager)
-    {
+        private EntityManagerInterface $entityManager
+    ) {
     }
 
     /**
@@ -37,13 +37,13 @@ class ApiMarineSpeciesService
         $data = $this->getData();
 
         $nb = 0;
-        foreach($data as $d)
-        {
+        foreach ($data as $d) {
             $specie = new Specie();
 
             $specie->setName($d["valid_name"]);
             $specie->setSpecieKey($d["AphiaID"]);
             $specie->setScientificName($d["scientificname"]);
+            $specie->setlocation("[" . mt_rand(1, 10) . "," . mt_rand(1, 10) . "," . mt_rand(1, 10) . "]");
 
             $this->entityManager->persist($specie);
             $nb++;
@@ -52,6 +52,4 @@ class ApiMarineSpeciesService
 
         return $nb;
     }
-
-
 }
