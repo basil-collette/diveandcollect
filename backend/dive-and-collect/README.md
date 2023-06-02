@@ -44,7 +44,7 @@ $ php bin/console cache:clear
 Open the file .env and configure your database connection (user, password and database_name)
 
 ```sh
-DATABASE_URL=mysql://user:password@127.0.0.1:3306/database_name
+DATABASE_URL="mysql://root:criss@127.0.0.1:3306/hackathon?serverVersion=8.0.32&charset=utf8mb4"
 ```
 
 ### Creating database

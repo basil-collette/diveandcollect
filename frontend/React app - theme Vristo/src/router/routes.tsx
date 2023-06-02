@@ -109,6 +109,8 @@ const MarkDownEditor = lazy(() => import('../pages/Forms/MarkDownEditor'));
 const DateRangePicker = lazy(() => import('../pages/Forms/DateRangePicker'));
 const Clipboard = lazy(() => import('../pages/Forms/Clipboard'));
 
+const MapComponent = lazy(() => import('../components/MapComponent/MapComponent'));
+
 const routes = [
     // dashboard
     {
@@ -524,6 +526,11 @@ const routes = [
         element: <Error />,
         layout: 'blank',
     },
+    {
+        path:'/MapComponent',
+        element: <MapComponent/>,
+        layout:'blank'
+    }
 ];
 
 export { routes };
