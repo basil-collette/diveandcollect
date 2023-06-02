@@ -71,7 +71,6 @@ const Identification = () => {
         if (dataset.length > 0) {
             const activation = model.infer(img, true);
             const result = await classifier.predictClass(activation);
-            console.log('result',result)
         }
         const predictions = await model.classify(img);
         predictions.map(async (prediction) => {
