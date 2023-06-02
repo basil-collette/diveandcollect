@@ -49,12 +49,9 @@ class UserFixtures extends Fixture
         foreach ($position as $p) {
             $location = new Location();
             $location->setName($p[0]);
-            $location->setSpecieLocation(["lat" => $p[1], "lng" => $p[2]]);
+            $location->setCoordinate("{lat:" . strval($p[1]) . ",lng:" . strval($p[2]) . "}");
             $manager->persist($location);
         }
-
-
-
 
         $faker = Factory::create('fr_FR');
         for ($i = 0; $i < 50; $i++) {

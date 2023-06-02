@@ -18,8 +18,8 @@ class Location
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column]
-    private array $specieLocation = [];
+    #[ORM\Column(length: 100)]
+    private ?string $coordinate = null;
 
     public function getId(): ?int
     {
@@ -38,14 +38,14 @@ class Location
         return $this;
     }
 
-    public function getSpecieLocation(): array
+    public function getCoordinate(): string
     {
-        return $this->specieLocation;
+        return $this->coordinate;
     }
 
-    public function setSpecieLocation(array $specieLocation): self
+    public function setCoordinate(string $coordinate): self
     {
-        $this->specieLocation = $specieLocation;
+        $this->coordinate = $coordinate;
 
         return $this;
     }

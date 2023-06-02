@@ -43,7 +43,7 @@ class ApiMarineSpeciesService
             $specie->setName($d["valid_name"]);
             $specie->setSpecieKey($d["AphiaID"]);
             $specie->setScientificName($d["scientificname"]);
-            $specie->setlocation("[" . mt_rand(0, 9) . "," . mt_rand(0, 9) . "," . mt_rand(0, 9) . "]");
+            $specie->setlocation("[" . mt_rand(1, 10) . "," . mt_rand(1, 10) . "," . mt_rand(1, 10) . "]");
 
             $this->entityManager->persist($specie);
             $nb++;
