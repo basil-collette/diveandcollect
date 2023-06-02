@@ -5,31 +5,38 @@ import { setPageTitle } from '../../store/themeConfigSlice';
 import { useDispatch } from 'react-redux';
 import * as tf from '@tensorflow-models/mobilenet';
 import '@tensorflow/tfjs-backend-webgl';
+import OverlayModal from '../../components/Layouts/OverlayModal';
 
 const Identification = () => {
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(setPageTitle('Knowledge Base'));
     });
-    const [active, setActive] = useState<Number>();
-    const togglePara = (value: Number) => {
-        setActive((oldValue) => {
-            return oldValue === value ? 0 : value;
-        });
-    };
 
-    const prediction = async (img2: any) => {
+    const [showModal, setShowModal] = useState<boolean>(true);
+
+    let file: any = null;
+
+    const prediction = async (img: HTMLImageElement) => {
         const model = await tf.load();
-        
-        const img = document.querySelector('img') as HTMLImageElement;
 
         const predictions = await model.classify(img);
         
-        console.log(predictions[0].className + ' ' + predictions[0].probability.toFixed(2));
+        const result: string = predictions[0].className + ' ' + predictions[0].probability.toFixed(2);
+        console.log(result);
+        
+        //document.querySelector('span').innerHTML = result;
     };
 
-    const showModal = () => {
+    const showModalProcess = () => {
 
+        const img = document.querySelector('#uploadedImg') as HTMLImageElement;
+        img.src = URL.createObjectURL(file);
+
+        prediction(img);
+
+        //
     }
 
     return (
@@ -43,16 +50,26 @@ const Identification = () => {
 
                 <input type="file"
                     className="absolute opacity-0 w-full h-full left-0 top-0 cursor-pointer"
-                    onChange={(e) => prediction(e.target.files[0]) }
+                    onChange={(e) => {
+                        file = e.target.files[0];
+                        showModalProcess();
+                    }}
                 />
             </label>
 
             <span className="-mt-16 text-lg">ou déposer l'image ici</span>
-        </div>
+        
+            { showModal &&
+                <OverlayModal hideModal={() => {setShowModal(false)}} >
+                    
+                    <div className="text-white flex flex-column">
+                        <p>TEST</p>
+                    </div>
 
-        //<OverlayModal>
-            //{{}}
-        //</OverlayModal>
+                </OverlayModal>
+            }
+            
+        </div>
     );
 };
 
