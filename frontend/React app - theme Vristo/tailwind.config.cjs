@@ -7,12 +7,17 @@ module.exports = {
             center: true,
         },
         extend: {
+            backgroundImage: {
+                'fishes': "url('../public/assets/images/wallpaper.jpg')",
+            },
             colors: {
                 outremer: '#1a3863',
                 lagon: '#6bc2cc',
                 vertdeau: '#87c9b5',
                 prune: '#961f63',
                 fushia: '#d64591',
+                "light-lagoon": "#D1EBEE",
+                "blue-grey": "#D8DCEB",
                 primary: {
                     DEFAULT: '#4361ee',
                     light: '#eaf1ff',

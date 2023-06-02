@@ -1,10 +1,14 @@
 import { PropsWithChildren } from 'react';
 import App from '../../App';
+import TopNav from '../../components/TopNav';
 
 const BlankLayout = ({ children }: PropsWithChildren) => {
     return (
         <App>
-            <div className="text-black dark:text-white-dark min-h-screen">{children} </div>
+            <div className="relative flex flex-col min-h-screen h-px">
+                <TopNav />
+                {children}
+            </div>
         </App>
     );
 };
