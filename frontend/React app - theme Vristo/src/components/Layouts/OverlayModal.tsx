@@ -9,8 +9,6 @@ import { PropsWithChildren, useState, useEffect } from 'react';
 
 const OverlayModal = (props: any) => {
 
-    
-
     return (
         <div className="absolute w-full h-full top-0 left-0 bg-black bg-opacity-70 p-16">
             <div className="relative text-xl w-full h-full flex flex-col bg-lagon rounded-xl bg-opacity-80 transition-all">
