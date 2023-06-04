@@ -11,6 +11,7 @@ import exifr from 'exifr'
 
 
 const Identification = () => {
+    
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(setPageTitle('Identification'));
